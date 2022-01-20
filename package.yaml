@@ -1,0 +1,88 @@
+name:                liquidsol
+version:             0.1.0.0
+github:              "UCSB-PLSE/solid-public"
+license:             Apache-2.0
+author:              "Bryan Tan"
+maintainer:          "None"
+copyright:           "Bryan Tan (Technius) 2020"
+
+extra-source-files:
+- README.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/Technius/liquidsol#readme>
+
+default-extensions: [
+  # syntax sugar
+  LambdaCase, BangPatterns, MultiWayIf, TupleSections,
+  # type classes
+  MultiParamTypeClasses, FunctionalDependencies, InstanceSigs,
+  # deriving
+  DeriveFunctor, DeriveFoldable, DeriveTraversable, GeneralizedNewtypeDeriving,
+  StandaloneDeriving, DeriveGeneric, DerivingStrategies, DerivingVia,
+  # patterns
+  EmptyCase, ViewPatterns, PatternSynonyms,
+]
+
+dependencies:
+- base >= 4.7 && < 5
+# data structures and basics
+- extra
+- recursion-schemes
+- transformers
+- mtl
+- containers
+- unordered-containers
+- text
+- prettyprinter
+- optparse-applicative
+- dlist
+- simple-smt
+- time
+- aeson
+- process
+- process-extras
+- bytestring
+# graph utilities
+- fgl
+- fgl-visualize
+- dotgen
+# debug
+- deepseq
+- hashable
+# for scientific notation parsing
+- scientific
+# for inline asm
+- regex-tdfa ^>= 1.2.3
+- regex-tdfa-text
+
+ghc-options:
+- -Wall
+- -Wcompat
+- -Wincomplete-uni-patterns
+- -Wredundant-constraints
+
+library:
+  source-dirs: src
+  dependencies:
+  - array # Needed for alex
+  build-tools:
+  - alex
+  - happy
+
+executables:
+  solid-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options: &ghcopts
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - liquidsol

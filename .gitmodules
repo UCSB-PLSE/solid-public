@@ -1,0 +1,8 @@
+# commit eae8726
+[submodule "simple-smt"]
+	path = lib/simple-smt
+	url = https://github.com/Technius/simple-smt.git
+	branch = enhancements
+[submodule "lib/simple-smt"]
+	path = lib/simple-smt
+	url = https://github.com/Technius/simple-smt.git
